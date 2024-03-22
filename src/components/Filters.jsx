@@ -24,7 +24,7 @@ const Filters = () => {
   return <Form className="grid grid-cols-1 bg-neutral items-center md:grid-cols-2 md:gap-2 lg:grid-cols-4 rounded p-8 mb-16">
 
     {/* SEARCH*/}
-    <FormInput type='search' name='search' label='search product' size='w-56' defaultValue={search} />
+    <FormInput type='search' name='search' label='search product' size='w-76' defaultValue={search} />
     {/* CATEGORY */}
     <Options name='category' label='select category' input={categoryMetaData()} defaultValue={category} />
     {/* COMPANY */}
@@ -32,7 +32,7 @@ const Filters = () => {
     {/* SORT */}
     <Options name='order' label='sort by' input={sortItems()} defaultValue={order} />
     {/* PRICE */}
-    <InputRange label="select price" name='price' size='w-56' price={price} />
+    <InputRange label="select price" name='price' size='w-76' price={price} />
     <div className="my-2">
       {/* SHIPPING */}
       <InputCheck name="shipping" label='free shipping' size='checkbox-sm' defaultCheck={shipping} />

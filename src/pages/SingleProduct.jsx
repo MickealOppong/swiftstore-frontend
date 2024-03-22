@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLoaderData } from "react-router-dom";
-import { NavHeader, Options } from "../components/index";
+import { NavHeader } from "../components/index";
+import { addItem } from "../features/cartSlice";
 import { customFetch, formatPrice, generateNumbers } from "../util";
 
 export const loader = async ({ params }) => {
@@ -21,8 +23,27 @@ const SingleProduct = () => {
   const [productColor, setProductColor] = useState(colors[0])
   const [quantity, setQuantity] = useState(1);
 
+  console.log(quantity);
+  const dispatch = useDispatch();
+
   const handleQuantity = (e) => {
     setQuantity(e.target.value)
+  }
+
+  const cartProduct = {
+    cartID: singleProduct.id + productColor,
+    productID: singleProduct.id,
+    image,
+    title,
+    price,
+    productColor,
+    quantity,
+    company
+  }
+
+
+  const addToCart = () => {
+    dispatch(addItem({ cartProduct }))
   }
   return <section>
     <NavHeader text="products" />
@@ -35,6 +56,7 @@ const SingleProduct = () => {
         <h4>{company}</h4>
         <p>{formatPrice(price)}</p>
         <p>{description}</p>
+        {/** PRODUCT COLOUR */}
         <div className="flex flex-col mt-4">
           <h4 className="mb-2 capitalize tracking-wider">colors</h4>
           <div className="flex">
@@ -45,11 +67,20 @@ const SingleProduct = () => {
             }
           </div>
         </div>
-        <Options input={generateNumbers(10)} label='quantity' />
-        <button className="btn btn-primary capitalize w-36">add to cart</button>
+        {/*QUANTITY */}
+        <select className="select select-secondary w-full max-w-xs " onChange={handleQuantity}>
+          {
+            generateNumbers(10).map((number) => {
+              return <option key={number} defaultValue={quantity} >{number}</option>
+            })
+          }
+        </select>
+        {/* ADD TO CART */}
+        <button className="btn btn-primary capitalize w-36"
+          onClick={addToCart}>add to cart</button>
       </div>
     </article>
 
-  </section>
+  </section >
 }
 export default SingleProduct;
