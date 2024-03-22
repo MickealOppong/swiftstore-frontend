@@ -45,7 +45,7 @@ const SingleProduct = () => {
             }
           </div>
         </div>
-        <Options event={handleQuantity} input={generateNumbers(10)} label='quantity' />
+        <Options input={generateNumbers(10)} label='quantity' />
         <button className="btn btn-primary capitalize w-36">add to cart</button>
       </div>
     </article>

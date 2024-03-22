@@ -22,7 +22,7 @@ const ProductsContainer = () => {
       {
         products.map((product) => {
           const { image, title, price } = product.attributes;
-          return <Link to={`/products/${product.id}`} className={`${layout === 'list' ? 'flex flex-col md:flex-row gap-12' : 'flex flex-col'} card shadow-xl rounded-xl p-8 hover:scale-105 duration-300`}>
+          return <Link to={`/products/${product.id}`} className={`${layout === 'list' ? 'flex flex-col md:flex-row gap-12' : 'flex flex-col'} card shadow-xl rounded-xl p-8 hover:scale-105 duration-300`} key={product.id}>
             <div>
               <img src={image} alt={title} className={`${layout === 'list' ? 'w-full h-56 md:w-96' : "flex  w-full h-60 lg:w-96"} rounded-md object-cover `} />
             </div>

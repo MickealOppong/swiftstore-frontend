@@ -1,11 +1,11 @@
-const FormInput = ({ label, type, name, defaultValue, size, min, max }) => {
+const FormInput = ({ label, type, name, defaultValue, size }) => {
   return (
-    <label className="form-control ">
-      <div className="label">
+    <div className="form-control ">
+      <label className="label">
         <span className="label-text capitalize">{label}</span>
-      </div>
-      <input type={type} name={name} defaultValue={defaultValue} className={`input input-bordered ${size}`} min={min} max={max} />
-    </label>
+      </label>
+      <input type={type} name={name} defaultValue={defaultValue} className={`input input-bordered ${size}`} />
+    </div>
   )
 }
 export default FormInput;

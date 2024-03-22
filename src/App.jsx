@@ -4,7 +4,6 @@ import Landing from "./pages/Landing";
 import { About, Cart, Checkout, Error, ErrorPage, HomeLayout, Login, Orders, Products, Register, SingleProduct } from './pages/index';
 const queryClient = new QueryClient();
 
-
 import { loader as landingLoader } from './pages/Landing';
 import { loader as productLoader } from './pages/Products';
 import { loader as singleProductLoader } from './pages/SingleProduct';
@@ -32,7 +31,7 @@ const router = createBrowserRouter([
         path: 'products',
         element: <Products />,
         errorElement: <ErrorPage />,
-        loader: productLoader
+        loader: productLoader,
       },
       {
         path: '/products/:id',

@@ -1,23 +1,47 @@
+import { Form, Link, useLoaderData } from "react-router-dom";
 import FormInput from "./FormInput";
+import InputCheck from "./InputCheck";
+import InputRange from "./InputRange";
 import Options from "./Options";
 
+
 const Filters = () => {
+  const { meta, params } = useLoaderData();
+  const { search, company, category, price, shipping, order } = params;
 
-  const handleSelection = () => {
-
+  //console.log(params);
+  const companyMetaData = () => {
+    return meta.companies.map((item) => item)
   }
-  return <div className="grid grid-cols-1 bg-neutral items-center md:grid-cols-2 md:gap-2 lg:grid-cols-4 rounded p-8 mb-16">
-    <FormInput type='search' name='product' label='search product' size='w-56' />
-    <Options event={handleSelection} label='select category' size="w-56" />
-    <Options event={handleSelection} label='select company' size="w-56" />
-    <Options event={handleSelection} label='sort by' size="w-56" />
-    <FormInput type='range' name='product' label='select price' size='w-56' min="0" max="1000" defaultValue="300" />
-    <FormInput type='checkbox' name='product' label='free shipping' size="w-4" />
+
+  const categoryMetaData = () => {
+    return meta.categories.map((item) => item)
+  }
+  const sortItems = () => {
+    const sortBy = ['a-z', 'z-a', 'high', 'low']
+    return sortBy.map((item) => item)
+  }
+  return <Form className="grid grid-cols-1 bg-neutral items-center md:grid-cols-2 md:gap-2 lg:grid-cols-4 rounded p-8 mb-16">
+
+    {/* SEARCH*/}
+    <FormInput type='search' name='search' label='search product' size='w-56' defaultValue={search} />
+    {/* CATEGORY */}
+    <Options name='category' label='select category' input={categoryMetaData()} defaultValue={category} />
+    {/* COMPANY */}
+    <Options name='company' label='select company' input={companyMetaData()} defaultValue={company} />
+    {/* SORT */}
+    <Options name='order' label='sort by' input={sortItems()} defaultValue={order} />
+    {/* PRICE */}
+    <InputRange label="select price" name='price' size='w-56' price={price} />
+    <div className="my-2">
+      {/* SHIPPING */}
+      <InputCheck name="shipping" label='free shipping' size='checkbox-sm' defaultCheck={shipping} />
+    </div>
+    {/* BUTTONS */}
     <div className="flex flex-col gap-y-4 lg:flex-row gap-x-4">
       <button type="submit" className="btn btn-primary btn-sm w-56 uppercase">search</button>
-      <button type="button" className="btn btn-primary btn-sm w-56 uppercase">reset</button>
+      <Link to="/products" className="btn btn-primary btn-sm w-56 uppercase">reset</Link>
     </div>
-
-  </div>
+  </Form>
 }
 export default Filters;
