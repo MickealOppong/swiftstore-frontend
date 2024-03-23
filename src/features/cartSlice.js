@@ -7,7 +7,7 @@ const initialState = {
   cartTotal: 0,
   shipping: 200,
   tax: 0,
-  orderTotal: 0
+  orderTotal: 0,
 }
 
 const getFromLocalStorage = () => {
@@ -32,13 +32,13 @@ const cartSlice = createSlice({
       toast.success("Item added to cart")
     },
     removeItem: (state, action) => {
-      const { cartProduct } = action.payload;
-      const item = state.cartItems.find((i) => i.cartID == cartProduct.cartID)
+      const { cartID } = action.payload;
+      const item = state.cartItems.find((i) => i.cartID == cartID)
       state.cartItems = state.cartItems.filter((item) => {
-        return item.cartID !== cartProduct.cartID;
+        return item.cartID !== cartID;
       })
-      state.itemsInCart -= item.amount;; kughj
-      state.cartTotal -= cartProduct.amount * cartProduct.price;
+      state.itemsInCart -= item.amount;
+      state.cartTotal -= item.amount * item.price;
       cartSlice.caseReducers.calcTotals(state);
       toast.error("item removed from cart")
     },
@@ -47,21 +47,22 @@ const cartSlice = createSlice({
       return initialState;
     },
     editItem: (state, action) => {
-      const { cartProduct } = action.payload;
-      const item = state.cartItems.find((product) => product.cartID === cartProduct.cartID)
-      state.itemsInCart += cartProduct.amount - item.amount;
-      item.amount += item.price * (cartProduct.amount - item.amount);
-      item.amount = cartProduct.amount;
+      const { cartID, amount } = action.payload;
+      console.log(amount);
+      const item = state.cartItems.find((product) => product.cartID === cartID)
+      state.itemsInCart += (amount - item.amount);
+      state.cartTotal += item.price * (amount - item.amount);
+      item.amount = amount;
       cartSlice.caseReducers.calcTotals(state);
       toast.success("cart updated")
     },
     calcTotals: (state) => {
       state.tax = 0.2 * state.cartTotal;
-      state.orderTotal += state.cartTotal + state.shipping + state.tax;
+      state.orderTotal = state.cartTotal + state.shipping + state.tax;
       localStorage.setItem('cart', JSON.stringify(state))
     }
 
   }
 })
-export const { addItem, removeItem, clearItem } = cartSlice.actions;
+export const { addItem, removeItem, clearItem, editItem } = cartSlice.actions;
 export default cartSlice.reducer;

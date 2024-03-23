@@ -16,8 +16,8 @@ const Login = () => {
     </nav>
     <section className="h-screen max-w-lg place-items-center mx-auto p-8 mt-8">
       <div className="text-center mb-8">
-        <h4 className="text-center text-neutral text-3xl font-semibold">Welcome back</h4>
-        <p className="text-neutral mt-2">Login to your Swiftstore account</p>
+        <h4 className="text-center text-primary text-3xl font-semibold">Welcome back</h4>
+        <p className="text-accent mt-2">Login to your Swiftstore account</p>
       </div>
       <Form method="post" className="flex flex-col gap-y-4 border-2 shadow-md bg-base-100 p-8 prose">
         <FormInput type="email" label="username" defaultValue="epps@gmail.com" name="identifier" />

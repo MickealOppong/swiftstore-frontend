@@ -7,7 +7,7 @@ const Header = () => {
       {/* links */}
       <div className="flex gap-x-4 text-xs md:text-l">
         <Link to="/login" className="flex items-center gap-x-1"> <AiOutlineLogin /> Log in / Guest</Link>
-        <Link to="/login" className="flex items-center gap-x-1">Sign up</Link>
+        <Link to="/register" className="flex items-center gap-x-1">Sign up</Link>
       </div>
     </div>
   </header>
