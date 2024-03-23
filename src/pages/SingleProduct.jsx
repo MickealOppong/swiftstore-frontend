@@ -14,20 +14,18 @@ export const loader = async ({ params }) => {
   } catch (error) {
     console.log(error);
   }
-  return null;
 }
 
 const SingleProduct = () => {
   const { singleProduct } = useLoaderData();
   const { title, company, description, colors, image, price, category } = singleProduct.attributes
   const [productColor, setProductColor] = useState(colors[0])
-  const [quantity, setQuantity] = useState(1);
+  const [amount, setAmount] = useState(1);
 
-  console.log(quantity);
   const dispatch = useDispatch();
 
   const handleQuantity = (e) => {
-    setQuantity(e.target.value)
+    setAmount(parseInt(e.target.value))
   }
 
   const cartProduct = {
@@ -37,7 +35,7 @@ const SingleProduct = () => {
     title,
     price,
     productColor,
-    quantity,
+    amount,
     company
   }
 
@@ -71,7 +69,7 @@ const SingleProduct = () => {
         <select className="select select-secondary w-full max-w-xs " onChange={handleQuantity}>
           {
             generateNumbers(10).map((number) => {
-              return <option key={number} defaultValue={quantity} >{number}</option>
+              return <option key={number} defaultValue={amount} >{number}</option>
             })
           }
         </select>

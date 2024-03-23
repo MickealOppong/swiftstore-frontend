@@ -17,7 +17,7 @@ const PaginationContainer = () => {
   }
 
 
-  return <div className="flex justify-end gap-x-2">
+  return <div className="flex justify-end gap-x-2 mt-16">
     <button onClick={() => {
       let prevPage = page - 1;
       if (prevPage < 1) prevPage = pageCount;

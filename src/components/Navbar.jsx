@@ -19,6 +19,8 @@ const Navbar = () => {
   const [theme, setTheme] = useState(getThemeFromStorage());
   const itemsInCart = useSelector((state) => state.cart.itemsInCart);
 
+
+  console.log(itemsInCart);
   const handleTheme = () => {
     const { autumn, dim } = themes;
     const newTheme = theme === autumn ? dim : autumn
