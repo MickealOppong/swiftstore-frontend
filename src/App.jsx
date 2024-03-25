@@ -4,10 +4,12 @@ import Landing from "./pages/Landing";
 import { About, Cart, Checkout, Error, ErrorPage, HomeLayout, Login, Orders, Products, Register, SingleProduct } from './pages/index';
 const queryClient = new QueryClient();
 
+import { loader as checkoutLoader } from './pages/Checkout';
 import { loader as landingLoader } from './pages/Landing';
 import { loader as productLoader } from './pages/Products';
 import { loader as singleProductLoader } from './pages/SingleProduct';
 
+import { action as checkoutAction } from './components/CheckoutForm';
 import { action as loginAction } from './pages/Login';
 import { action as registerAction } from './pages/Register';
 
@@ -49,7 +51,9 @@ const router = createBrowserRouter([
       },
       {
         path: '/checkout',
-        element: <Checkout />
+        element: <Checkout />,
+        loader: checkoutLoader(store),
+        action: checkoutAction(store)
       }
 
     ]

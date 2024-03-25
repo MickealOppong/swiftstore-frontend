@@ -18,7 +18,7 @@ const Cart = () => {
       <div className="lg:col-span-4 lg:pl-4">
         <CartTotal />
         {
-          user ? <Link to='/checkout' className="btn btn-primary uppercase ">Proceed to checkout</Link> : <Link to='/login' className="btn btn-primary uppercase ">Please login</Link>
+          user ? <Link to='/checkout' className="btn btn-primary uppercase w-80">Proceed to checkout</Link> : <Link to='/login' className="btn btn-primary uppercase w-80">Please login</Link>
         }
       </div>
     </div>

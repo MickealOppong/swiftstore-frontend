@@ -13,7 +13,7 @@ const getThemeFromStorage = () => {
   return theme;
 }
 const getUserFromStorage = () => {
-  return localStorage.getItem('user') || null;
+  return JSON.parse(localStorage.getItem('user')) || null;
 }
 const initialState = {
   user: getUserFromStorage(),
@@ -26,7 +26,7 @@ const userSlice = createSlice({
     loginUser: (state, action) => {
       const user = { ...action.payload.user, token: action.payload.jwt };
       state.user = user;
-      localStorage.setItem('user', user)
+      localStorage.setItem('user', JSON.stringify(user))
     },
     logoutUser: (state) => {
       state.user = null;
