@@ -7,6 +7,11 @@ const queryClient = new QueryClient();
 import { loader as landingLoader } from './pages/Landing';
 import { loader as productLoader } from './pages/Products';
 import { loader as singleProductLoader } from './pages/SingleProduct';
+
+import { action as loginAction } from './pages/Login';
+import { action as registerAction } from './pages/Register';
+
+import { store } from './store';
 const router = createBrowserRouter([
   {
     path: '',
@@ -52,12 +57,14 @@ const router = createBrowserRouter([
   {
     path: 'login',
     element: <Login />,
-    errorElement: <Error />
+    errorElement: <Error />,
+    action: loginAction(store),
   },
   {
     path: 'register',
     element: <Register />,
-    errorElement: <Error />
+    errorElement: <Error />,
+    action: registerAction
   }
 ]);
 
